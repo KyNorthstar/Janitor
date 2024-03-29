@@ -24,17 +24,21 @@ struct TrackNewDirectoryButton: View {
     @Binding
     private var trackedDirectories: [TrackedDirectory]
     
-    private let title: Title
+    private let explicitTitle: Title?
+    private var automaticTitle: Title { trackedDirectories.isEmpty ? .trackADirectory : .trackAnother }
+    private var title: Title { explicitTitle ?? automaticTitle }
     
     private let onDone: BlindCallback
     
+    private var emphasize: Bool { trackedDirectories.isEmpty }
+    
     
     public init(trackedDirectories: Binding<[TrackedDirectory]>,
-                title: Title = .trackAnother,
+                title: Title? = nil,
                 onDone: @escaping BlindCallback = null)
     {
         self._trackedDirectories = trackedDirectories
-        self.title = title
+        self.explicitTitle = title
         self.onDone = onDone
     }
     
@@ -43,8 +47,10 @@ struct TrackNewDirectoryButton: View {
         Button(action: { isSelectingNewDirectoryToTrack = true }) {
             Image(systemName: "plus")
             Text(title.rawValue)
+                .font(emphasize ? .title3.bold() : nil)
         }
         .controlSize(.large)
+        .keyboardShortcut(emphasize ? .defaultAction : nil)
         
         
         .fileImporter(isPresented: $isSelectingNewDirectoryToTrack,

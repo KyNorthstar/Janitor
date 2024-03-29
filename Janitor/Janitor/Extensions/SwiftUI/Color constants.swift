@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-extension Color {
-    /// The color used on toggle switches
-    static var toggle: Self { Self("ToggleColor") }
-}
+//extension Color {
+//    /// The color used on toggle switches
+//    static var toggle: Self { Self("ToggleColor") }
+//}

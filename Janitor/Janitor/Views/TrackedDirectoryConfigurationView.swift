@@ -69,7 +69,7 @@ struct TrackedDirectoryConfigurationView: View {
                 Button(action: { isSelectingNewDirectoryToTrack = true }) {
                     DecorativePathView(workingTrackedDirectory.url)
                 }
-                .buttonStyle(LinkButtonStyle())
+                .buttonStyle(.link)
                 .padding(.bottom)
                 
                 Spacer(minLength: 24)
@@ -87,7 +87,7 @@ struct TrackedDirectoryConfigurationView: View {
                 
                 Spacer().fixedSize()
                 
-                MeasurementPicker("Largest Total Size",
+                MeasurementPicker("Largest Combined Size",
                                   selection: $workingTrackedDirectory.largestAllowedTotalSize,
                                   valueRange: DataSize(value: 56, unit: .kilobyte) ... DataSize(value: 1, unit: .exbibyte))
                     .fixedSize()

@@ -2,11 +2,12 @@
 //  ContentView.swift
 //  Janitor
 //
-//  Created by Ky Leggiero on 2021-07-17.
+//  Created by Ky on 2024-03-14.
 //
 
 import SwiftUI
-import SwiftyUserDefaults
+
+import Introspection
 import JanitorKit
 
 
@@ -14,21 +15,23 @@ import JanitorKit
 struct ContentView: View {
     
     @Binding
-    private var trackedDirectories: [TrackedDirectory]
-    
-    
-    init(trackedDirectories: Binding<[TrackedDirectory]>) {
-        self._trackedDirectories = trackedDirectories
-    }
+    var trackedDirectories: [TrackedDirectory]
     
     
     var body: some View {
-        TrackedDirectoriesView($trackedDirectories)
+        switch Introspection.Permission.file(.readWrite) {
+        case .fullFilesystem,
+                .someFiles(_):
+            TrackedDirectoriesView($trackedDirectories)
+            
+        case .noAccess:
+            Text("You need to let me read & delete your files if you want me to be able to read & delete your files automatically")
+        }
     }
 }
 
-struct ContentView_Previews : PreviewProvider {
-    static var previews: some View {
-        ContentView(trackedDirectories: .example)
-    }
+
+
+#Preview {
+    ContentView(trackedDirectories: .example)
 }

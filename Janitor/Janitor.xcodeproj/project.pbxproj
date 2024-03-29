@@ -16,23 +16,24 @@
 		A30BC4E826AE0DF80082D963 /* RectangleTools in Frameworks */ = {isa = PBXBuildFile; productRef = A30BC4E726AE0DF80082D963 /* RectangleTools */; };
 		A30BC4EB26AE29930082D963 /* ViewRefreshHack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30BC4EA26AE29930082D963 /* ViewRefreshHack.swift */; };
 		A31EB53A26A3BD5800ABED25 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31EB53926A3BD5800ABED25 /* SettingsView.swift */; };
-		A31EB53E26A3BFE000ABED25 /* SwiftyUserDefaultsNamespaces in Frameworks */ = {isa = PBXBuildFile; productRef = A31EB53D26A3BFE000ABED25 /* SwiftyUserDefaultsNamespaces */; };
 		A31EB54326A3C33600ABED25 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31EB54226A3C33600ABED25 /* UserData.swift */; };
 		A31EB54726A3C3B800ABED25 /* UserDefaults keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31EB54626A3C3B800ABED25 /* UserDefaults keys.swift */; };
-		A31EB54B26A3C93600ABED25 /* JanitorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A31EB54A26A3C93600ABED25 /* JanitorKit */; };
 		A31EB55026A3CA9800ABED25 /* TrackedDirectoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31EB54F26A3CA9800ABED25 /* TrackedDirectoriesView.swift */; };
 		A32B508E26B769B500BE3DD8 /* TrackedDirectory + Example Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32B508D26B769B500BE3DD8 /* TrackedDirectory + Example Data.swift */; };
 		A32B509026B769DF00BE3DD8 /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32B508F26B769DF00BE3DD8 /* ExampleData.swift */; };
 		A38FD78E26A6371A00282E63 /* CollectionTools in Frameworks */ = {isa = PBXBuildFile; productRef = A38FD78D26A6371A00282E63 /* CollectionTools */; };
 		A38FD79026A64B4F00282E63 /* TrackedDirectoryConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38FD78F26A64B4F00282E63 /* TrackedDirectoryConfigurationView.swift */; };
+		A39EBB0E26D68E70006858D7 /* JanitorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A39EBB0D26D68E70006858D7 /* JanitorKit */; };
 		A3D2A88D26A4DF270020EF5B /* TrackedDirectoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2A88C26A4DF270020EF5B /* TrackedDirectoryView.swift */; };
 		A3DA09E826A3BCED0014830B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DA09E726A3BCED0014830B /* App.swift */; };
-		A3DA09EA26A3BCED0014830B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DA09E926A3BCED0014830B /* ContentView.swift */; };
+		A3DA09EA26A3BCED0014830B /* DataModelTranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DA09E926A3BCED0014830B /* DataModelTranslationLayer.swift */; };
 		A3DA09EC26A3BCEE0014830B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DA09EB26A3BCEE0014830B /* Assets.xcassets */; };
 		A3DA09EF26A3BCEE0014830B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3DA09EE26A3BCEE0014830B /* Preview Assets.xcassets */; };
 		A3DDC16526A9221F004A336F /* MeasurementPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDC16426A9221F004A336F /* MeasurementPicker.swift */; };
 		A3DDD12726BCE666004281DD /* Binding + ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDD12626BCE666004281DD /* Binding + ExampleData.swift */; };
 		A3DDD12C26BCE8E9004281DD /* Array + ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDD12B26BCE8E9004281DD /* Array + ExampleData.swift */; };
+		B9661FBE2BA3BEA7000DB7EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9661FBD2BA3BEA7000DB7EC /* ContentView.swift */; };
+		B9A2B2C12B789B4800D4284E /* Introspection + Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2B2C02B789B4800D4284E /* Introspection + Permissions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,6 @@
 		A30BC4DF26ADD8070082D963 /* TrackNewDirectoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackNewDirectoryButton.swift; sourceTree = "<group>"; };
 		A30BC4E126ADE6240082D963 /* EditTrackedDirectorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTrackedDirectorySheet.swift; sourceTree = "<group>"; };
 		A30BC4E326ADF5900082D963 /* MeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
-		A30BC4E526AE0D300082D963 /* Swift-Rectangle-Tools */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Swift-Rectangle-Tools"; path = "/Users/benleggiero/Library/Developer/Xcode/DerivedData/Janitor-etqushrgmqfpzebjhrfmpltqsvqy/SourcePackages/checkouts/Swift-Rectangle-Tools"; sourceTree = "<absolute>"; };
 		A30BC4EA26AE29930082D963 /* ViewRefreshHack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRefreshHack.swift; sourceTree = "<group>"; };
 		A31EB53926A3BD5800ABED25 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A31EB54226A3C33600ABED25 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -49,18 +49,21 @@
 		A31EB54F26A3CA9800ABED25 /* TrackedDirectoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDirectoriesView.swift; sourceTree = "<group>"; };
 		A32B508D26B769B500BE3DD8 /* TrackedDirectory + Example Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackedDirectory + Example Data.swift"; sourceTree = "<group>"; };
 		A32B508F26B769DF00BE3DD8 /* ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
+		A36A6C4526D68DAD005112D5 /* JanitorKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = JanitorKit; path = ../JanitorKit; sourceTree = "<group>"; };
 		A38FD78F26A64B4F00282E63 /* TrackedDirectoryConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDirectoryConfigurationView.swift; sourceTree = "<group>"; };
 		A3D2A88C26A4DF270020EF5B /* TrackedDirectoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDirectoryView.swift; sourceTree = "<group>"; };
 		A3DA09E426A3BCED0014830B /* Janitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3DA09E726A3BCED0014830B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		A3DA09E926A3BCED0014830B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3DA09E926A3BCED0014830B /* DataModelTranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTranslationLayer.swift; sourceTree = "<group>"; };
 		A3DA09EB26A3BCEE0014830B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3DA09EE26A3BCEE0014830B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3DA09F026A3BCEE0014830B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3DA09F126A3BCEE0014830B /* Janitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Janitor.entitlements; sourceTree = "<group>"; };
 		A3DDC16426A9221F004A336F /* MeasurementPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementPicker.swift; sourceTree = "<group>"; };
 		A3DDD12626BCE666004281DD /* Binding + ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding + ExampleData.swift"; sourceTree = "<group>"; };
 		A3DDD12B26BCE8E9004281DD /* Array + ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + ExampleData.swift"; sourceTree = "<group>"; };
+		B9661FBD2BA3BEA7000DB7EC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B9661FBF2BA3C0FD000DB7EC /* Janitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Janitor.entitlements; sourceTree = "<group>"; };
+		B9A2B2C02B789B4800D4284E /* Introspection + Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Introspection + Permissions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +71,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A31EB53E26A3BFE000ABED25 /* SwiftyUserDefaultsNamespaces in Frameworks */,
 				A30BC4E826AE0DF80082D963 /* RectangleTools in Frameworks */,
+				A39EBB0E26D68E70006858D7 /* JanitorKit in Frameworks */,
 				A38FD78E26A6371A00282E63 /* CollectionTools in Frameworks */,
 				A30BC4DA26AD1F700082D963 /* Introspection in Frameworks */,
-				A31EB54B26A3C93600ABED25 /* JanitorKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			children = (
 				A3DDD12A26BCE8D6004281DD /* Standard Library */,
 				A30BC4DC26AD30190082D963 /* SwiftUI */,
+				B9A2B2BF2B789B2300D4284E /* RougeWare */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,7 +120,7 @@
 		A31EB54926A3C93600ABED25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A30BC4E526AE0D300082D963 /* Swift-Rectangle-Tools */,
+				A36A6C4526D68DAD005112D5 /* JanitorKit */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 		A31EB54E26A3CA8E00ABED25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A31EB53926A3BD5800ABED25 /* SettingsView.swift */,
 				A30BC4D626AC9E930082D963 /* DecorativePathView.swift */,
 				A3DDC16426A9221F004A336F /* MeasurementPicker.swift */,
 				A30BC4E326ADF5900082D963 /* MeasurementView.swift */,
@@ -169,14 +173,13 @@
 				A30BC4E926AE29250082D963 /* Hacks */,
 				A30BC4DB26AD30100082D963 /* Extensions */,
 				A32B508C26B7698800BE3DD8 /* Example Data */,
+				B9661FC22BA57E7B000DB7EC /* Filesystem */,
 				A31EB54E26A3CA8E00ABED25 /* Views */,
 				A31EB54126A3C32300ABED25 /* User Data */,
 				A3DA09E726A3BCED0014830B /* App.swift */,
-				A3DA09E926A3BCED0014830B /* ContentView.swift */,
-				A31EB53926A3BD5800ABED25 /* SettingsView.swift */,
-				A3DA09EB26A3BCEE0014830B /* Assets.xcassets */,
-				A3DA09F026A3BCEE0014830B /* Info.plist */,
-				A3DA09F126A3BCEE0014830B /* Janitor.entitlements */,
+				B9661FBD2BA3BEA7000DB7EC /* ContentView.swift */,
+				A3DA09E926A3BCED0014830B /* DataModelTranslationLayer.swift */,
+				B9661FC02BA3C111000DB7EC /* meta-info */,
 				A3DA09ED26A3BCEE0014830B /* Preview Content */,
 			);
 			path = Janitor;
@@ -198,6 +201,39 @@
 			path = "Standard Library";
 			sourceTree = "<group>";
 		};
+		B9661FC02BA3C111000DB7EC /* meta-info */ = {
+			isa = PBXGroup;
+			children = (
+				B9661FBF2BA3C0FD000DB7EC /* Janitor.entitlements */,
+				A3DA09EB26A3BCEE0014830B /* Assets.xcassets */,
+				A3DA09F026A3BCEE0014830B /* Info.plist */,
+			);
+			name = "meta-info";
+			sourceTree = "<group>";
+		};
+		B9661FC12BA3C1D1000DB7EC /* Introspection */ = {
+			isa = PBXGroup;
+			children = (
+				B9A2B2C02B789B4800D4284E /* Introspection + Permissions.swift */,
+			);
+			path = Introspection;
+			sourceTree = "<group>";
+		};
+		B9661FC22BA57E7B000DB7EC /* Filesystem */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Filesystem;
+			sourceTree = "<group>";
+		};
+		B9A2B2BF2B789B2300D4284E /* RougeWare */ = {
+			isa = PBXGroup;
+			children = (
+				B9661FC12BA3C1D1000DB7EC /* Introspection */,
+			);
+			path = RougeWare;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,11 +251,10 @@
 			);
 			name = Janitor;
 			packageProductDependencies = (
-				A31EB53D26A3BFE000ABED25 /* SwiftyUserDefaultsNamespaces */,
-				A31EB54A26A3C93600ABED25 /* JanitorKit */,
 				A38FD78D26A6371A00282E63 /* CollectionTools */,
 				A30BC4D926AD1F700082D963 /* Introspection */,
 				A30BC4E726AE0DF80082D963 /* RectangleTools */,
+				A39EBB0D26D68E70006858D7 /* JanitorKit */,
 			);
 			productName = Janitor;
 			productReference = A3DA09E426A3BCED0014830B /* Janitor.app */;
@@ -231,8 +266,9 @@
 		A3DA09DC26A3BCED0014830B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A3DA09E326A3BCED0014830B = {
 						CreatedOnToolsVersion = 12.4;
@@ -249,7 +285,6 @@
 			);
 			mainGroup = A3DA09DB26A3BCED0014830B;
 			packageReferences = (
-				A31EB53C26A3BFE000ABED25 /* XCRemoteSwiftPackageReference "SwiftyUserDefaultsNamespaces" */,
 				A38FD78C26A6371A00282E63 /* XCRemoteSwiftPackageReference "Swift-Collection-Tools" */,
 				A30BC4D826AD1F700082D963 /* XCRemoteSwiftPackageReference "Swift-Introspection" */,
 				A30BC4E626AE0DF80082D963 /* XCRemoteSwiftPackageReference "Swift-Rectangle-Tools" */,
@@ -282,10 +317,11 @@
 			files = (
 				A31EB53A26A3BD5800ABED25 /* SettingsView.swift in Sources */,
 				A3DDC16526A9221F004A336F /* MeasurementPicker.swift in Sources */,
+				B9661FBE2BA3BEA7000DB7EC /* ContentView.swift in Sources */,
 				A32B508E26B769B500BE3DD8 /* TrackedDirectory + Example Data.swift in Sources */,
 				A31EB54726A3C3B800ABED25 /* UserDefaults keys.swift in Sources */,
 				A30BC4EB26AE29930082D963 /* ViewRefreshHack.swift in Sources */,
-				A3DA09EA26A3BCED0014830B /* ContentView.swift in Sources */,
+				A3DA09EA26A3BCED0014830B /* DataModelTranslationLayer.swift in Sources */,
 				A32B509026B769DF00BE3DD8 /* ExampleData.swift in Sources */,
 				A30BC4E226ADE6240082D963 /* EditTrackedDirectorySheet.swift in Sources */,
 				A30BC4E426ADF5900082D963 /* MeasurementView.swift in Sources */,
@@ -296,6 +332,7 @@
 				A30BC4E026ADD8070082D963 /* TrackNewDirectoryButton.swift in Sources */,
 				A3DDD12C26BCE8E9004281DD /* Array + ExampleData.swift in Sources */,
 				A3DA09E826A3BCED0014830B /* App.swift in Sources */,
+				B9A2B2C12B789B4800D4284E /* Introspection + Permissions.swift in Sources */,
 				A38FD79026A64B4F00282E63 /* TrackedDirectoryConfigurationView.swift in Sources */,
 				A3DDD12726BCE666004281DD /* Binding + ExampleData.swift in Sources */,
 				A31EB55026A3CA9800ABED25 /* TrackedDirectoriesView.swift in Sources */,
@@ -309,6 +346,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -339,9 +377,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -356,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -370,6 +410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -400,9 +441,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -411,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -425,10 +468,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Janitor/Janitor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Janitor/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 26V9MK8TGP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Janitor/Info.plist;
@@ -436,8 +482,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.benleggiero.Janitor;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kyleggiero.Janitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SUPPRESS_WARNINGS = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
@@ -449,8 +498,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Janitor/Janitor.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Janitor/Preview Content\"";
 				DEVELOPMENT_TEAM = 26V9MK8TGP;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -460,7 +512,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.benleggiero.Janitor;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kyleggiero.Janitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SUPPRESS_WARNINGS = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -508,14 +562,6 @@
 				minimumVersion = 2.10.0;
 			};
 		};
-		A31EB53C26A3BFE000ABED25 /* XCRemoteSwiftPackageReference "SwiftyUserDefaultsNamespaces" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ky1vstar/SwiftyUserDefaultsNamespaces.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		A38FD78C26A6371A00282E63 /* XCRemoteSwiftPackageReference "Swift-Collection-Tools" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RougeWare/Swift-Collection-Tools.git";
@@ -537,19 +583,14 @@
 			package = A30BC4E626AE0DF80082D963 /* XCRemoteSwiftPackageReference "Swift-Rectangle-Tools" */;
 			productName = RectangleTools;
 		};
-		A31EB53D26A3BFE000ABED25 /* SwiftyUserDefaultsNamespaces */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A31EB53C26A3BFE000ABED25 /* XCRemoteSwiftPackageReference "SwiftyUserDefaultsNamespaces" */;
-			productName = SwiftyUserDefaultsNamespaces;
-		};
-		A31EB54A26A3C93600ABED25 /* JanitorKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = JanitorKit;
-		};
 		A38FD78D26A6371A00282E63 /* CollectionTools */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A38FD78C26A6371A00282E63 /* XCRemoteSwiftPackageReference "Swift-Collection-Tools" */;
 			productName = CollectionTools;
+		};
+		A39EBB0D26D68E70006858D7 /* JanitorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JanitorKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

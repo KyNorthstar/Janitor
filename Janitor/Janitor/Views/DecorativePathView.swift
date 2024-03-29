@@ -2,7 +2,7 @@
 //  DecorativePathView.swift
 //  Janitor
 //
-//  Created by Ben Leggiero on 2021-07-24.
+//  Created by Ky Leggiero on 2021-07-24.
 //
 
 import SwiftUI

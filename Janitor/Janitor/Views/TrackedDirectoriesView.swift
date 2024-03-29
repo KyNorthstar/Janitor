@@ -36,34 +36,8 @@ struct TrackedDirectoriesView: View {
     var body: some View {
         Group {
             if trackedDirectories.isEmpty {
-                VStack(spacing: 24) {
-
-                    Spacer()
-
-                    Text("Janitor tracks folders to make sure they don't get too bloated.")
-                        .font(.title)
-
-                    Text("Add a folder to begin:")
-                        .font(.title2)
-
-                    HStack {
-
-                        Spacer()
-
-                        TrackNewDirectoryButton(trackedDirectories: $trackedDirectories,
-                                                title: .trackADirectory,
-                                                onDone: { _viewRefreshHack.refresh() })
-                            .font(.title3.bold())
-
-                        Spacer()
-                    }
-
-                    Spacer()
-                }
-                .multilineTextAlignment(.center)
+                noTrackedDirectoriesView
             }
-            
-            
             else {
                 List {
                     ForEach($trackedDirectories) { dir in
@@ -90,6 +64,34 @@ struct TrackedDirectoriesView: View {
             }
         }
         .frame(minWidth: 400, idealWidth: 400, minHeight: 200, idealHeight: 300)
+    }
+}
+
+
+
+private extension TrackedDirectoriesView {
+    var noTrackedDirectoriesView: some View {
+        VStack(spacing: 24) {
+
+            Spacer()
+
+            Text("Janitor tracks folders to make sure they don't get too bloated.")
+                .font(.title)
+            Text("Add a folder to begin:")
+                .font(.title2)
+
+            HStack {
+                Spacer()
+
+                TrackNewDirectoryButton(trackedDirectories: $trackedDirectories,
+                                        onDone: { _viewRefreshHack.refresh() })
+
+                Spacer()
+            }
+
+            Spacer()
+        }
+        .multilineTextAlignment(.center)
     }
 }
 

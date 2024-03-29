@@ -2,7 +2,7 @@
 //  TrackedDirectoryView.swift
 //  TrackedDirectoryView
 //
-//  Created by Ben Leggiero on 2021-07-18.
+//  Created by Ky Leggiero on 2021-07-18.
 //
 
 import SwiftUI

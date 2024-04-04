@@ -24,7 +24,7 @@ var sinks = Set<AnyCancellable>()
 struct App: SwiftUI.App {
     
     @StateObject
-    var janitorialEngine = JanitorialEngine(dryRun: true, preparing: [])
+    var janitorialEngine = JanitorialEngine(dryRun: false, preparing: [])
     
 //    @State
 //    var trackedDirectories_cache = [TrackedDirectory]()

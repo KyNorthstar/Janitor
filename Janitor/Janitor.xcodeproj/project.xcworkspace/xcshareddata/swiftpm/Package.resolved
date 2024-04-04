@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BasicMathTools",
+        "repositoryURL": "https://github.com/RougeWare/Swift-Basic-Math-Tools.git",
+        "state": {
+          "branch": null,
+          "revision": "a821470f058fa41878afdaf83dfcf5f17d94af01",
+          "version": "1.3.0"
+        }
+      },
+      {
         "package": "CollectionTools",
         "repositoryURL": "https://github.com/RougeWare/Swift-Collection-Tools.git",
         "state": {

@@ -22,7 +22,7 @@ struct SettingsView: View {
     
     
     @State
-    private var enableToggleValue = false
+    private var wholeAppToggleValue = false
     
     @State
     private var justUpdatingUi = false
@@ -30,12 +30,12 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Toggle("Enable \(Introspection.appName)", isOn: $enableToggleValue)
+            Toggle("Enable \(Introspection.appName)", isOn: $wholeAppToggleValue)
                 .toggleStyle(SwitchToggleStyle())
         }
         .padding()
         .frame(minWidth: 360, alignment: .topLeading)
-        .onChange(of: enableToggleValue) { _, newValue in
+        .onChange(of: wholeAppToggleValue, initial: true) { _, newValue in
             guard !justUpdatingUi else { return }
             
             Task {
@@ -46,7 +46,7 @@ struct SettingsView: View {
             justUpdatingUi = true
             defer { justUpdatingUi = false }
             
-            enableToggleValue = !dryRun
+            wholeAppToggleValue = !dryRun
         }
     }
 }

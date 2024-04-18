@@ -14,8 +14,8 @@ import JanitorKit
 
 struct DataModelTranslationLayer: View {
     
-    @Query
-    private var trackedDirectories: [TrackedDirectory.PersistentModel]
+    @Query(sort: \TrackedDirectoryPersistentModel.self, order: .forward)
+    private var trackedDirectories: [TrackedDirectoryPersistentModel]
     
     @Environment(\.modelContext)
     private var modelContext
@@ -34,12 +34,12 @@ struct DataModelTranslationLayer: View {
             do {
                 try modelContext.transaction {
                     try modelContext
-                        .fetch(.init(predicate: #Predicate<TrackedDirectory.PersistentModel> { _ in true }))
+                        .fetch(.init(predicate: #Predicate<TrackedDirectoryPersistentModel> { _ in true }))
                         .forEach {
                             modelContext.delete($0)
                         }
                     
-                    let newModels = newValue.map(TrackedDirectory.PersistentModel.init)
+                    let newModels = newValue.map(TrackedDirectoryPersistentModel.init)
                     for newModel in newModels {
                         modelContext.insert(newModel)
                     }

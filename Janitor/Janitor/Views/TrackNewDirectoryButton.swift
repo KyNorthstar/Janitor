@@ -59,6 +59,7 @@ struct TrackNewDirectoryButton: View {
             case .success(let directoryUrl):
                 nextTrackedDirectory = .init(
                     uuid: UUID(),
+                    sort: nil,
                     isEnabled: true,
                     url: directoryUrl,
                     oldestAllowedAge: .init(value: 60, unit: .day),

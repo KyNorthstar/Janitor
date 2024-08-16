@@ -14,7 +14,8 @@ import JanitorKit
 
 struct DataModelTranslationLayer: View {
     
-    @Query(sort: \TrackedDirectoryPersistentModel.self, order: .forward)
+    // Wanna use this sort, but guess what, it crashes!
+    @Query//(sort: \TrackedDirectoryPersistentModel.trackedDirectory, order: .forward)
     private var trackedDirectories: [TrackedDirectoryPersistentModel]
     
     @Environment(\.modelContext)
@@ -27,9 +28,12 @@ struct DataModelTranslationLayer: View {
     private var currentError: Error?
     
     
+    public init() {}
+    
+    
     var body: some View {
         ContentView(trackedDirectories: Binding {
-            trackedDirectories.map(\.trackedDirectory)
+            trackedDirectories.map(\.trackedDirectory).sorted()
         } set: { newValue in
             do {
                 try modelContext.transaction {
@@ -53,7 +57,7 @@ struct DataModelTranslationLayer: View {
         })
         .onChange(of: trackedDirectories, initial: true) { oldValue, newValue in
             Task {
-                await janitorialEngine.setTrackedDirectories(newValue.map(\.trackedDirectory))
+                await janitorialEngine.setTrackedDirectories(newValue.map(\.trackedDirectory).sorted())
             }
         }
     }

@@ -87,7 +87,7 @@ struct App: SwiftUI.App {
         Group {
             WindowGroup {
                 DataModelTranslationLayer()
-                    .modelContainer(for: TrackedDirectoryPersistentModel.self)
+                    .modelContainer(for: [TrackedDirectoryPersistentModel.self])
                     .environmentObject(janitorialEngine)
                     .environment(\.janitorialEngineActivityFeed, janitorialEngine.activityFeed)
                 
@@ -149,14 +149,6 @@ final class TrackedDirectoryPersistentModel {
 extension TrackedDirectory {
     init(_ persistentModel: TrackedDirectoryPersistentModel) {
         self = persistentModel.trackedDirectory
-    }
-}
-
-
-
-extension TrackedDirectory: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        lhs.url.path < rhs.url.path
     }
 }
 

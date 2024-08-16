@@ -41,18 +41,46 @@ struct TrackedDirectoryView: View {
     
     
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .center) {
             if isHovering {
-                Button(action: { isEditing = true }) {
-                    Image(systemName: "slider.horizontal.3")
-                        .padding(EdgeInsets(eachVertical: 2, eachHorizontal: 4))
-                }
-                .buttonStyle(LinkButtonStyle())
-                .transition(.opacity)
-//                .border(Color.primary, width: 1)
+                editButton
+//                    .opacity(isHovering ? 1 : 0)
+                    .transition(.move(edge: .leading).animation(.bouncy))
             }
             
+            content
+        }
+        .animation(.bouncy, value: isHovering.hashValue)
+        
+        .frame(minHeight: 32)
+        
+        .editTrackedDirectory($trackedDirectory, isEditing: $isEditing, _viewRefreshHack: $_viewRefreshHack)
+        
+        
+        .onHover(perform: { isHovering = $0 })
+        
+        .contextMenu {
+            Button("Edit", action: { isEditing = true })
+            Button("Delete", action: onDeleteRequested)
+        }
+    }
+    
+    
+    private var editButton: some View {
+        Button(action: { isEditing = true }) {
+            Image(systemName: "pencil")
+                .padding(EdgeInsets(eachVertical: 2, eachHorizontal: 4))
+        }
+        .buttonStyle(LinkButtonStyle())
+        .fixedSize()
+        .foregroundStyle(Color.accentColor)
+    }
+    
+    
+    private var content: some View {
+        HStack(alignment: .firstTextBaseline) {
             DecorativePathView(trackedDirectory.url)
+//                .transition(.opacity.animation(.bouncy))
             
             MeasurementView(trackedDirectory.largestAllowedTotalSize)
                 .fixedSize()
@@ -65,19 +93,8 @@ struct TrackedDirectoryView: View {
             Toggle("Automatically clean this directory", isOn: $trackedDirectory.isEnabled)
                 .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 .labelsHidden()
+                .help("Turn this janitor \(trackedDirectory.isEnabled ? "off" : "on")")
         }
-        
-        .animation(hoverAnimation, value: isHovering)
-        .frame(minHeight: 32)
-        
-        .editTrackedDirectory($trackedDirectory, isEditing: $isEditing, _viewRefreshHack: $_viewRefreshHack)
-        
-        .contextMenu {
-            Button("Edit", action: { isEditing = true })
-            Button("Delete", action: onDeleteRequested)
-        }
-        
-        .onHover(perform: { isHovering = $0 })
     }
 }
 
@@ -88,6 +105,7 @@ struct TrackedDirectoryView_Previews: PreviewProvider {
         TrackedDirectoryView(
             .constant(.init(
                 uuid: UUID(),
+                sort: nil,
                 isEnabled: true,
                 url: URL(fileURLWithPath: "/Path/To/File.txt"),
                 oldestAllowedAge: .init(value: 7, unit: .day),

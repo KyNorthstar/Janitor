@@ -19,9 +19,6 @@ struct TrackedDirectoriesView: View {
     private var trackedDirectories: [TrackedDirectory]
     
     @State
-    private var isEditing = false
-    
-    @State
     private var selectedDirectory: TrackedDirectory?
     
     @State
@@ -49,6 +46,17 @@ struct TrackedDirectoriesView: View {
                     .onDelete {
                         self.trackedDirectories.remove(atOffsets: $0)
                         _viewRefreshHack.refresh()
+                    }
+                    .onMove { indices, newOffset in
+                        var trackedDirectories = self.trackedDirectories
+                        
+                        trackedDirectories.move(fromOffsets: indices, toOffset: newOffset)
+                        
+                        for index in trackedDirectories.indices {
+                            trackedDirectories[index].sort = index
+                        }
+                        
+                        self.trackedDirectories = trackedDirectories
                     }
                     .animation(.easeInOut(duration: 0.2), value: trackedDirectories)
                 }
@@ -101,11 +109,13 @@ struct TrackedDirectoriesView_Previews: PreviewProvider {
     static var previews: some View {
         TrackedDirectoriesView(.constant([
             .init(uuid: UUID(),
+                  sort: 1,
                   isEnabled: true,
                   url: URL(fileURLWithPath: "/Path/To/File1"),
                   oldestAllowedAge: Age(value: 30, unit: .day),
                   largestAllowedTotalSize: DataSize(value: 1, unit: .gibibyte)),
             .init(uuid: UUID(),
+                  sort: 2,
                   isEnabled: false,
                   url: URL(fileURLWithPath: "/Path/To/File2"),
                   oldestAllowedAge: Age(value: 30, unit: .day),

@@ -120,9 +120,10 @@ struct TrackeedDirectoryConfigurationView_Previews: PreviewProvider {
         TrackedDirectoryConfigurationView(
             for: .constant(
                 TrackedDirectory(
-                    uuid: UUID(),
+                    uuid: UUID(), 
+                    sort: nil,
                     isEnabled: true,
-                    url: URL(fileURLWithPath: "/Users/kyleggiero/Downloads"),
+                    url: URL(fileURLWithPath: "~/Downloads").expandingTildeInPath,
                     oldestAllowedAge: Age(value: 30, unit: .day),
                     largestAllowedTotalSize: DataSize(value: 30, unit: .gibibyte)
                 )

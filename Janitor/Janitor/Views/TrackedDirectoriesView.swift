@@ -8,12 +8,25 @@
 import SwiftUI
 
 import CollectionTools
+import Introspection
 import JanitorKit
 import SimpleLogging
 
 
 
 struct TrackedDirectoriesView: View {
+    
+    @EnvironmentObject
+    private var janitorialEngine: JanitorialEngine
+    
+    @Environment(\.janitorialEngineActivityFeed)
+    private var janitorialEngineActivityFeed
+    
+    @Environment(\.avoidUsingToolbar)
+    private var avoidUsingToolbar
+    
+    @Environment(\.openWindow)
+    private var openWindow
     
     @Binding
     private var trackedDirectories: [TrackedDirectory]
@@ -23,6 +36,9 @@ struct TrackedDirectoriesView: View {
     
     @State
     private var _viewRefreshHack = ViewRefreshHack()
+    
+    @State
+    private var runningState: JanitorialEngine.RunningState? = nil
     
     
     init(_ trackedDirectories: Binding<[TrackedDirectory]>) {
@@ -38,10 +54,14 @@ struct TrackedDirectoriesView: View {
             else {
                 List {
                     ForEach($trackedDirectories) { dir in
-                        TrackedDirectoryView(dir, onDeleteRequested: {
-                            trackedDirectories.remove(firstElementWithId: dir.wrappedValue.id)
-                            _viewRefreshHack.refresh()
-                        }, _viewRefreshHack: $_viewRefreshHack)
+                        TrackedDirectoryView(
+                            dir,
+                            onDeleteRequested: {
+                                trackedDirectories.remove(firstElementWithId: dir.wrappedValue.id)
+                                _viewRefreshHack.refresh()
+                            },
+                            _viewRefreshHack: $_viewRefreshHack,
+                            onUserDoneEditing: onUserDoneEditingTrackedDirectory)
                     }
                     .onDelete {
                         self.trackedDirectories.remove(atOffsets: $0)
@@ -59,15 +79,58 @@ struct TrackedDirectoriesView: View {
                         self.trackedDirectories = trackedDirectories
                     }
                     .animation(.easeInOut(duration: 0.2), value: trackedDirectories)
+                    
+                    if avoidUsingToolbar {
+                        Button("Open") {
+                            openWindow(id: "main")
+                        }
+                    }
                 }
                 .listStyle(InsetListStyle())
                 
                 
                 .toolbar(id: "TrackedDirectoriesView") {
-                    ToolbarItem(id: "Track a new directory", placement: .primaryAction, showsByDefault: true) {
-                        TrackNewDirectoryButton(trackedDirectories: $trackedDirectories,
-                                                onDone: { _viewRefreshHack.refresh() })
+                    if case .dryRun = runningState {
+                        ToolbarItem(id: "Janitor isn't running") {
+                            SettingsLink {
+                                Text("\(Introspection.appName) isn't running")
+                                    .bold()
+                                    .foregroundStyle(.red)
+                            }
+                        }
                     }
+                    
+                    if !avoidUsingToolbar {
+                        ToolbarItem(id: "Track a new directory", placement: .primaryAction, showsByDefault: true) {
+                            trackNewDirectoryButton
+                        }
+                    }
+                }
+                
+                
+                .onReceive(janitorialEngineActivityFeed) { activity in
+                    switch activity {
+                    case .janitorialEngineRunningStateDidChange(runningState: let runningState):
+                        self.runningState = runningState
+                        
+//                    case .dryRunDidChange(dryRun: let dryRun):
+//                        self.isRunning = !dryRun
+                        
+                    case .error, .janitorDidStart, .janitorDidStop, .didRemoveFile, .trackedDirectoriesDidChange:
+                        return
+                    }
+                }
+                
+                
+                .onAppear {
+                    Task {
+                        self.runningState = await janitorialEngine.currentRunningState
+                    }
+                }
+                
+                
+                .task {
+                    self.runningState = await janitorialEngine.currentRunningState
                 }
             }
         }
@@ -91,8 +154,7 @@ private extension TrackedDirectoriesView {
             HStack {
                 Spacer()
 
-                TrackNewDirectoryButton(trackedDirectories: $trackedDirectories,
-                                        onDone: { _viewRefreshHack.refresh() })
+                trackNewDirectoryButton
 
                 Spacer()
             }
@@ -101,6 +163,39 @@ private extension TrackedDirectoriesView {
         }
         .multilineTextAlignment(.center)
     }
+    
+    
+    var trackNewDirectoryButton: some View {
+        TrackNewDirectoryButton(trackedDirectories: $trackedDirectories, onDone: onUserDoneEditingTrackedDirectory)
+    }
+    
+    
+    func onUserDoneEditingTrackedDirectory(_ userDoneAction: UserDoneAction) -> ShouldAcceptUserDoneAction {
+        defer { _viewRefreshHack.refresh() }
+        
+        switch userDoneAction {
+        case .cancel:
+            // If the user doesn't want to do anything, that's fine by us
+            return .accept
+            
+        case .confirm(proposedChanges: let configuredTrackedDirectory):
+            
+            let wouldDuplicate = trackedDirectories.contains { existingDirectory in
+                existingDirectory.id != configuredTrackedDirectory.id
+                && existingDirectory.url == configuredTrackedDirectory.url
+            }
+            
+            guard !wouldDuplicate else {
+                return .reject(reasonPresentedToUser: "That directory is already being tracked. Maybe you meant to select another, or edit the existing one?")
+            }
+            
+            return .accept
+        }
+    }
+    
+    
+    typealias UserDoneAction = TrackedDirectoryConfigurationView.UserDoneAction
+    typealias ShouldAcceptUserDoneAction = TrackedDirectoryConfigurationView.ShouldAcceptUserDoneAction
 }
 
 

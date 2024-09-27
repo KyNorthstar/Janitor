@@ -62,7 +62,7 @@ var sinks = Set<AnyCancellable>()
 @main
 struct App: SwiftUI.App {
     
-    private let janitorialEngine = JanitorialEngine(dryRun: false, preparing: [])
+    private let janitorialEngine = JanitorialEngine(dryRun: true, preparing: [])
     
     @State
     private var isMenuBarIconInsertedIntoMenuBar = true
@@ -85,9 +85,9 @@ struct App: SwiftUI.App {
     
     var body: some Scene {
         Group {
-            WindowGroup {
+            Window(Text(Introspection.appName), id: "main") {
                 DataModelTranslationLayer()
-                    .modelContainer(for: [TrackedDirectoryPersistentModel.self])
+                    .modelContainer(for: [TrackedDirectoryPersistentModel.self, WholeAppSettingsModel.self])
                     .environmentObject(janitorialEngine)
                     .environment(\.janitorialEngineActivityFeed, janitorialEngine.activityFeed)
                 
@@ -101,61 +101,25 @@ struct App: SwiftUI.App {
                             Spacer().hidden()
                         }
                     }
+                    
             }
             .windowToolbarStyle(.unified)
             
             Settings {
                 SettingsView()
-                    .modelContainer(for: [TrackedDirectoryPersistentModel.self])
+                    .modelContainer(for: [TrackedDirectoryPersistentModel.self, WholeAppSettingsModel.self])
                     .environmentObject(janitorialEngine)
                     .environment(\.janitorialEngineActivityFeed, janitorialEngine.activityFeed)
             }
             
             MenuBarExtra(Introspection.appName, image: "MenuBarIcon", isInserted: $isMenuBarIconInsertedIntoMenuBar) {
                 DataModelTranslationLayer()
-                    .modelContainer(for: [TrackedDirectoryPersistentModel.self])
+                    .modelContainer(for: [TrackedDirectoryPersistentModel.self, WholeAppSettingsModel.self])
                     .environmentObject(janitorialEngine)
                     .environment(\.janitorialEngineActivityFeed, janitorialEngine.activityFeed)
+                    .environment(\.avoidUsingToolbar, true)
             }
             .menuBarExtraStyle(.window)
         }
-    }
-}
-
-
-
-@Model
-final class TrackedDirectoryPersistentModel {
-    
-    var trackedDirectory: TrackedDirectory
-    
-    init(_ directory: TrackedDirectory) {
-        self.trackedDirectory = directory
-    }
-    
-    
-    @inline(__always)
-    var hashValue: Int { trackedDirectory.hashValue }
-    
-    
-    @inline(__always)
-    func hash(into hasher: inout Hasher) {
-        trackedDirectory.hash(into: &hasher)
-    }
-}
-
-
-
-extension TrackedDirectory {
-    init(_ persistentModel: TrackedDirectoryPersistentModel) {
-        self = persistentModel.trackedDirectory
-    }
-}
-
-
-
-extension TrackedDirectoryPersistentModel: Comparable {
-    public static func < (lhs: TrackedDirectoryPersistentModel, rhs: TrackedDirectoryPersistentModel) -> Bool {
-        lhs.trackedDirectory < rhs.trackedDirectory
     }
 }

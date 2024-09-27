@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import RegexBuilder
 
 import Introspection
+import JanitorKit
 
 
 private let fancyPathSeparator = " ❯ "
@@ -28,34 +30,60 @@ struct DecorativePathView: View {
         HStack(alignment: .lastTextBaseline, spacing: 0) {
             Text(
                 url.deletingLastPathComponent()
-                    .replacingUserHome(with: "🏡")
+                    .standardizedFileURL
+                    .path(replacingUserHomeWith: "🏡")
                     .withFancyPathSeparators(keepTrailingSeparator: true, ifEmpty: .emojiRepresentingThisDevice + fancyPathSeparator)
             )
                 .truncationMode(.middle)
                 .lineLimit(1)
                 .foregroundColor(.secondary)
-                
+                .layoutPriority(1)
             
-            Text(url.lastPathComponent)
-                .font(.title.bold())
+            if url.isRoot {
+                Text(Introspection.Device.current.userAssignedName.map { "All of \($0)" }
+                     ?? "(whole \(Introspection.Device.current.genericName ?? "Mac")")
+                    .font(.largeTitle.weight(.black))
+            }
+            else {
+                Text(url.lastPathComponent)
+                    .font(.title.bold())
+                    .lineLimit(1)
+                    .layoutPriority(2)
+            }
         }
         .help(url.path)
-        .accessibility(label: Text(url.replacingUserHome(with: "Your home folder ")))
+        .accessibility(label: Text(url.path(replacingUserHomeWith: "Your home folder ")))
+        
+        .frame(height: NSFontDescriptor.preferredFontDescriptor(forTextStyle: .title1).pointSize)
     }
 }
 
-struct DecorativeUrlView_Previews: PreviewProvider {
-    static var previews: some View {
-        DecorativePathView(URL(fileURLWithPath: "/Path/To/File.txt"))
-        DecorativePathView(URL(fileURLWithPath: "\(NSHomeDirectory())/Desktop"))
-    }
+
+
+#Preview("small") {
+    DecorativePathView(URL(fileURLWithPath: "\(NSHomeDirectory())/Pictures/Screenshots"))
+        .frame(width: 100)
+}
+
+#Preview("User desktop") {
+    DecorativePathView(URL(fileURLWithPath: "\(NSHomeDirectory())/Desktop"))
+}
+
+#Preview("Root") {
+    DecorativePathView(URL(fileURLWithPath: "/"))
 }
 
 
 
 private extension URL {
-    func replacingUserHome(with replacement: String) -> String {
-        path.replacingOccurrences(of: "/Users/\(NSUserName())", with: replacement, options: .anchored, range: nil)
+    func path(replacingUserHomeWith replacement: String) -> String {
+        path.replacing(
+            Regex {
+                // /^\(NSHomeDirectory())/
+                Anchor.startOfSubject
+                NSHomeDirectory()
+            },
+            with: replacement)
     }
 }
 
@@ -63,6 +91,7 @@ private extension URL {
 
 private extension String {
     func withFancyPathSeparators(keepTrailingSeparator: Bool, ifEmpty: @autoclosure () -> String = "") -> String {
+//        return "\"\(self)\""
         
         var path = self
         
@@ -70,9 +99,10 @@ private extension String {
             path = .init(path.dropFirst())
         }
         
-        if path.isEmpty {
+        guard path.isNotEmpty else {
             return ifEmpty()
         }
+//        return "\"\(path)\""
         
         if keepTrailingSeparator {
             path += "/"

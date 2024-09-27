@@ -32,37 +32,40 @@ struct TrackedDirectoryView: View {
     @Binding
     private var _viewRefreshHack: ViewRefreshHack
     
+    private let onUserDoneEditing: OnUserDoneEditing
     
-    init(_ trackedDirectory: Binding<TrackedDirectory>, onDeleteRequested: @escaping BlindCallback, _viewRefreshHack: Binding<ViewRefreshHack>) {
+    
+    init(_ trackedDirectory: Binding<TrackedDirectory>,
+         onDeleteRequested: @escaping BlindCallback,
+         _viewRefreshHack: Binding<ViewRefreshHack>,
+         onUserDoneEditing: @escaping OnUserDoneEditing)
+    {
         self._trackedDirectory = trackedDirectory
         self.onDeleteRequested = onDeleteRequested
         self.__viewRefreshHack = _viewRefreshHack
+        self.onUserDoneEditing = onUserDoneEditing
     }
     
     
     var body: some View {
-        HStack(alignment: .center) {
-            if isHovering {
-                editButton
-//                    .opacity(isHovering ? 1 : 0)
-                    .transition(.move(edge: .leading).animation(.bouncy))
+        content
+            .animation(.bouncy, value: isHovering.hashValue)
+        
+            .frame(minHeight: 32)
+        
+            .editTrackedDirectory(
+                $trackedDirectory,
+                isEditing: $isEditing,
+                _viewRefreshHack: $_viewRefreshHack,
+                onDone: onUserDoneEditing)
+        
+        
+            .onHover(perform: { isHovering = $0 })
+        
+            .contextMenu {
+                Button("Edit", action: { isEditing = true })
+                Button("Delete", action: onDeleteRequested)
             }
-            
-            content
-        }
-        .animation(.bouncy, value: isHovering.hashValue)
-        
-        .frame(minHeight: 32)
-        
-        .editTrackedDirectory($trackedDirectory, isEditing: $isEditing, _viewRefreshHack: $_viewRefreshHack)
-        
-        
-        .onHover(perform: { isHovering = $0 })
-        
-        .contextMenu {
-            Button("Edit", action: { isEditing = true })
-            Button("Delete", action: onDeleteRequested)
-        }
     }
     
     
@@ -71,8 +74,9 @@ struct TrackedDirectoryView: View {
             Image(systemName: "pencil")
                 .padding(EdgeInsets(eachVertical: 2, eachHorizontal: 4))
         }
-        .buttonStyle(LinkButtonStyle())
-        .fixedSize()
+//        .buttonStyle(LinkButtonStyle())
+        .buttonStyle(.bordered)
+//        .fixedSize()
         .foregroundStyle(Color.accentColor)
     }
     
@@ -80,6 +84,7 @@ struct TrackedDirectoryView: View {
     private var content: some View {
         HStack(alignment: .firstTextBaseline) {
             DecorativePathView(trackedDirectory.url)
+                .foregroundColor(trackedDirectory.url.wouldBeDangerousToTrack ? .red : nil)
 //                .transition(.opacity.animation(.bouncy))
             
             MeasurementView(trackedDirectory.largestAllowedTotalSize)
@@ -90,12 +95,20 @@ struct TrackedDirectoryView: View {
             
             Spacer()
             
+            editButton
+                .opacity(isHovering ? 1 : 0)
+                .animation(.bouncy, value: isHovering)
+            
             Toggle("Automatically clean this directory", isOn: $trackedDirectory.isEnabled)
                 .toggleStyle(SwitchToggleStyle(tint: .toggle))
                 .labelsHidden()
                 .help("Turn this janitor \(trackedDirectory.isEnabled ? "off" : "on")")
         }
     }
+    
+    
+    
+    typealias OnUserDoneEditing = EditTrackedDirectorySheet.OnDone
 }
 
 
@@ -107,11 +120,13 @@ struct TrackedDirectoryView_Previews: PreviewProvider {
                 uuid: UUID(),
                 sort: nil,
                 isEnabled: true,
-                url: URL(fileURLWithPath: "/Path/To/File.txt"),
+                url: URL(fileURLWithPath: "~/Pictures/Screenshots").expandingTildeInPath,
                 oldestAllowedAge: .init(value: 7, unit: .day),
                 largestAllowedTotalSize: .init(value: 2, unit: .gibibyte))),
             onDeleteRequested: null,
-            _viewRefreshHack: .constant(.init())
+            _viewRefreshHack: .constant(.init()),
+            onUserDoneEditing: constant(.accept)
         )
+        .frame(width: 300)
     }
 }

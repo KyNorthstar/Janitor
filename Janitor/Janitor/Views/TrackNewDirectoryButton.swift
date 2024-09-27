@@ -28,14 +28,14 @@ struct TrackNewDirectoryButton: View {
     private var automaticTitle: Title { trackedDirectories.isEmpty ? .trackADirectory : .trackAnother }
     private var title: Title { explicitTitle ?? automaticTitle }
     
-    private let onDone: BlindCallback
+    private let onDone: OnDone
     
     private var emphasize: Bool { trackedDirectories.isEmpty }
     
     
     public init(trackedDirectories: Binding<[TrackedDirectory]>,
                 title: Title? = nil,
-                onDone: @escaping BlindCallback = null)
+                onDone: @escaping OnDone)
     {
         self._trackedDirectories = trackedDirectories
         self.explicitTitle = title
@@ -57,6 +57,8 @@ struct TrackNewDirectoryButton: View {
                       allowedContentTypes: [.directory]) { result in
             switch result {
             case .success(let directoryUrl):
+                let directoryUrl = directoryUrl.standardizedFileURL
+                
                 nextTrackedDirectory = .init(
                     uuid: UUID(),
                     sort: nil,
@@ -72,19 +74,39 @@ struct TrackNewDirectoryButton: View {
         }
         
         
-        .sheet(item: $nextTrackedDirectory) { newTrackedDirectory in
+        .sheet(item: $nextTrackedDirectory) { nextTrackedDirectory in
             TrackedDirectoryConfigurationView(
                 for: .init(
-                    get: { newTrackedDirectory },
-                    set: { self.trackedDirectories += $0 }
+                    get: { nextTrackedDirectory },
+                    set: { newTrackedDirectory in
+                        guard !trackedDirectories.contains(where: { $0.url == newTrackedDirectory.url }) else {
+                            return
+                        }
+                        
+                        trackedDirectories += newTrackedDirectory
+                    }
                 ),
-                onDone: {
-                    self.nextTrackedDirectory = nil
-                    onDone()
+                style: .addNewDirectory,
+                onDone: { userAction in
+                    let shouldAccept = onDone(userAction)
+                    
+                    switch shouldAccept {
+                    case .accept:
+                        self.nextTrackedDirectory = nil
+                        
+                    case .reject(reasonPresentedToUser: _):
+                        break
+                    }
+                    
+                    return shouldAccept
                 }
             )
         }
     }
+    
+    
+    
+    typealias OnDone = TrackedDirectoryConfigurationView.OnDone
 }
 
 
@@ -98,8 +120,6 @@ extension TrackNewDirectoryButton {
 
 
 
-struct TrackNewDirectoryButton_Previews: PreviewProvider {
-    static var previews: some View {
-        TrackNewDirectoryButton(trackedDirectories: .constant([]))
-    }
+#Preview {
+    TrackNewDirectoryButton(trackedDirectories: .constant([]), onDone: constant(.accept))
 }

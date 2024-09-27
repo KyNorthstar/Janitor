@@ -22,32 +22,89 @@ struct SettingsView: View {
     
     
     @State
-    private var wholeAppToggleValue = false
+    private var engineIsActuallyRunning = EngineIsActuallyRunning(currentState: false, useThisToModifyJanitorialEngine: false)
     
     @State
-    private var justUpdatingUi = false
+    private var janitorialEngineIsStillPreparing = true
     
     
     var body: some View {
         Form {
-            Toggle("Enable \(Introspection.appName)", isOn: $wholeAppToggleValue)
+            Toggle("Big Main \(Introspection.appName) Switch", isOn: .init {
+                    engineIsActuallyRunning.currentState
+                } set: { newValue in
+                    engineIsActuallyRunning = .init(currentState: newValue, useThisToModifyJanitorialEngine: true)
+                })
                 .toggleStyle(SwitchToggleStyle())
+                .disabled(janitorialEngineIsStillPreparing)
+                .controlSize(.extraLarge)
         }
         .padding()
         .frame(minWidth: 360, alignment: .topLeading)
-        .onChange(of: wholeAppToggleValue, initial: true) { _, newValue in
-            guard !justUpdatingUi else { return }
+        
+        
+        .onChange(of: engineIsActuallyRunning, initial: true) { _, newValue in
+            guard newValue.useThisToModifyJanitorialEngine else { return }
             
             Task {
-                await janitorialEngine.setDryRun(!newValue)
+                await janitorialEngine.setDryRun(!newValue.currentState)
             }
         }
-        .onReceive(janitorialEngineActivityFeed.onlyDryRunChanges) { dryRun in
-            justUpdatingUi = true
-            defer { justUpdatingUi = false }
+        
+        
+        .onReceive(janitorialEngineActivityFeed.runningStateChanges) { runningState in
+            let newValues: RunningStateBooleans
             
-            wholeAppToggleValue = !dryRun
+            switch runningState {
+            case .preparing:
+                newValues = (janitorialEngineIsStillPreparing: true,
+                             engineIsActuallyRunning: false)
+                
+            case .dryRun:
+                newValues = (janitorialEngineIsStillPreparing: false,
+                             engineIsActuallyRunning: false)
+                
+            case .ready:
+                newValues = (janitorialEngineIsStillPreparing: false,
+                             engineIsActuallyRunning: true)
+            }
+            
+            self.janitorialEngineIsStillPreparing = newValues.janitorialEngineIsStillPreparing
+            self.engineIsActuallyRunning = .init(currentState: newValues.engineIsActuallyRunning, useThisToModifyJanitorialEngine: false)
         }
+        
+        
+        .task {
+            let newValues: RunningStateBooleans
+            
+            switch await janitorialEngine.currentRunningState {
+            case .preparing:
+                newValues.janitorialEngineIsStillPreparing = true
+                newValues.engineIsActuallyRunning = false
+                
+            case .ready:
+                newValues.janitorialEngineIsStillPreparing = false
+                newValues.engineIsActuallyRunning = true
+                
+            case .dryRun:
+                newValues.janitorialEngineIsStillPreparing = false
+                newValues.engineIsActuallyRunning = false
+            }
+            
+            self.janitorialEngineIsStillPreparing = newValues.janitorialEngineIsStillPreparing
+            self.engineIsActuallyRunning = .init(currentState: newValues.engineIsActuallyRunning, useThisToModifyJanitorialEngine: false)
+        }
+    }
+    
+    
+    
+    private typealias RunningStateBooleans = (janitorialEngineIsStillPreparing: Bool, engineIsActuallyRunning: Bool)
+    
+    
+    
+    private struct EngineIsActuallyRunning: Equatable {
+        let currentState: Bool
+        let useThisToModifyJanitorialEngine: Bool
     }
 }
 

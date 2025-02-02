@@ -57,7 +57,9 @@ struct TrackNewDirectoryButton: View {
                       allowedContentTypes: [.directory]) { result in
             switch result {
             case .success(let directoryUrl):
-                let directoryUrl = directoryUrl.standardizedFileURL
+                let directoryUrl = directoryUrl.withActualPath
+//                let didStartAccessing = directoryUrl.startAccessingSecurityScopedResource()
+//                assert(didStartAccessing, "Failed to access \(directoryUrl)")
                 
                 nextTrackedDirectory = .init(
                     uuid: UUID(),

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+import Either
 import FunctionTools
 import SimpleLogging
 import Introspection
@@ -23,7 +24,7 @@ struct TrackedDirectoryConfigurationView: View {
     private var inoutTrackedDirectory: TrackedDirectory
     
     @State
-    private var trackedDirectoryWasRejectedReason: LocalizedStringResource? = nil
+    private var trackedDirectoryWasRejectedReason: Either<String, LocalizedStringKey>? = nil
     
     @State
     private var isSelectingNewDirectoryToTrack = false
@@ -70,30 +71,7 @@ struct TrackedDirectoryConfigurationView: View {
         .frame(idealWidth: 480, maxWidth: 640)
         .fixedSize()
         
-        .fileImporter(isPresented: $isSelectingNewDirectoryToTrack,
-                      allowedContentTypes: [.directory]) { result in
-            switch result {
-            case .success(let directoryUrl):
-                workingTrackedDirectory.url = directoryUrl
-                
-                if wouldTrackWholeMachine {
-                    workingTrackedDirectory.isEnabled = false
-                }
-                
-            case .failure(let error):
-                log(error: error)
-                assertionFailure()
-            }
-        }
-        
-        
-        .alert(
-            "You might need to make some changes",
-            presenting: $trackedDirectoryWasRejectedReason,
-            message: { trackedDirectoryWasRejectedReason in
-                Text(trackedDirectoryWasRejectedReason)
-            }
-        )
+//        .trackedDirectoryPicker(isPresented: <#T##Binding<Bool>#>, onDone: <#T##(UserDonePickingTrackedDirectoryAction) -> ShouldAcceptUserDonePickingTrackedDirectoryAction#>)
     }
     
     
@@ -202,7 +180,19 @@ struct TrackedDirectoryConfigurationView: View {
         /// If this is returned, the config will remain where it is, giving the user a chance to make the config acceptable or cancel configuration altogether.
         ///
         /// - Parameter reasonPresentedToUser: This will be directly presented to the user, as an explanation for why their config was rejected
-        case reject(reasonPresentedToUser: LocalizedStringResource)
+        case reject(reasonPresentedToUser: Either<String, LocalizedStringKey>)
+        
+        
+        @inline(__always)
+        static func reject(reasonPresentedToUser: LocalizedStringKey) -> Self {
+            .reject(reasonPresentedToUser: .right(reasonPresentedToUser))
+        }
+        
+        
+        @inline(__always)
+        static func reject(reasonPresentedToUser: String) -> Self {
+            .reject(reasonPresentedToUser: .left(reasonPresentedToUser))
+        }
     }
     
     

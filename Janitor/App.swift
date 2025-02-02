@@ -62,6 +62,9 @@ var sinks = Set<AnyCancellable>()
 @main
 struct App: SwiftUI.App {
     
+    @NSApplicationDelegateAdaptor
+    private var appDelegate: AppDelegate
+    
     private let janitorialEngine = JanitorialEngine(dryRun: true, preparing: [])
     
     @State
@@ -121,5 +124,13 @@ struct App: SwiftUI.App {
             }
             .menuBarExtraStyle(.window)
         }
+    }
+}
+
+
+
+private extension App {
+    final class AppDelegate: NSObject, NSApplicationDelegate {
+        func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
     }
 }

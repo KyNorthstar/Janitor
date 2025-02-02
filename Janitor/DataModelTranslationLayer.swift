@@ -42,7 +42,19 @@ struct DataModelTranslationLayer: View {
             trackedDirectories.map(\.trackedDirectory).sorted()
         } set: { newValues in
             do {
-                try modelContext.replaceTransparentModelsOfType(newValues: newValues, forModelType: TrackedDirectoryPersistentModel.self)
+                try modelContext.replaceTransparentModelsOfType(newValues: newValues, forModelType: TrackedDirectoryPersistentModel.self) /*{ change in
+                    switch change {
+                    case .insert(let model):
+                        guard model.trackedDirectory.url.startAccessingSecurityScopedResource() else {
+                            log(fatal: "Could not access tracked directory: \(model.trackedDirectory.url)")
+                            assertionFailure()
+                            return
+                        }
+                        
+                    case .remove(let model):
+                        model.trackedDirectory.url.stopAccessingSecurityScopedResource()
+                    }
+                }*/
             }
             catch {
                 currentError = error

@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9732F782CB992D700A0A634 /* Either in Frameworks */ = {isa = PBXBuildFile; productRef = B9732F772CB992D700A0A634 /* Either */; };
+		B981F5A72CA7779600155911 /* JanitorKit in Frameworks */ = {isa = PBXBuildFile; productRef = B981F5A62CA7779600155911 /* JanitorKit */; };
+		B981F5AD2CA7823A00155911 /* Introspection in Frameworks */ = {isa = PBXBuildFile; productRef = B981F5AC2CA7823A00155911 /* Introspection */; };
+		B981F5B02CA7828500155911 /* RectangleTools in Frameworks */ = {isa = PBXBuildFile; productRef = B981F5AF2CA7828500155911 /* RectangleTools */; };
+		B98B56892CB4601E00D2830F /* OptionalTools in Frameworks */ = {isa = PBXBuildFile; productRef = B98B56882CB4601E00D2830F /* OptionalTools */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B981F5332CA7740E00155911 /* Janitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Janitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B981F5352CA7740E00155911 /* Janitor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Janitor;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B981F5302CA7740E00155911 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9732F782CB992D700A0A634 /* Either in Frameworks */,
+				B98B56892CB4601E00D2830F /* OptionalTools in Frameworks */,
+				B981F5B02CA7828500155911 /* RectangleTools in Frameworks */,
+				B981F5AD2CA7823A00155911 /* Introspection in Frameworks */,
+				B981F5A72CA7779600155911 /* JanitorKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B981F52A2CA7740E00155911 = {
+			isa = PBXGroup;
+			children = (
+				B981F5352CA7740E00155911 /* Janitor */,
+				B981F5342CA7740E00155911 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B981F5342CA7740E00155911 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B981F5332CA7740E00155911 /* Janitor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B981F5322CA7740E00155911 /* Janitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B981F5422CA7741000155911 /* Build configuration list for PBXNativeTarget "Janitor" */;
+			buildPhases = (
+				B981F52F2CA7740E00155911 /* Sources */,
+				B981F5302CA7740E00155911 /* Frameworks */,
+				B981F5312CA7740E00155911 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B981F5352CA7740E00155911 /* Janitor */,
+			);
+			name = Janitor;
+			packageProductDependencies = (
+				B981F5A62CA7779600155911 /* JanitorKit */,
+				B981F5AC2CA7823A00155911 /* Introspection */,
+				B981F5AF2CA7828500155911 /* RectangleTools */,
+				B98B56882CB4601E00D2830F /* OptionalTools */,
+				B9732F772CB992D700A0A634 /* Either */,
+			);
+			productName = Janitor;
+			productReference = B981F5332CA7740E00155911 /* Janitor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B981F52B2CA7740E00155911 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B981F5322CA7740E00155911 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = B981F52E2CA7740E00155911 /* Build configuration list for PBXProject "Janitor" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B981F52A2CA7740E00155911;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B981F5A52CA7779600155911 /* XCLocalSwiftPackageReference "JanitorKit" */,
+				B981F5AB2CA7823A00155911 /* XCRemoteSwiftPackageReference "Swift-Introspection" */,
+				B981F5AE2CA7828500155911 /* XCRemoteSwiftPackageReference "Swift-Rectangle-Tools" */,
+				B98B56872CB4601E00D2830F /* XCRemoteSwiftPackageReference "Swift-Optional-Tools" */,
+				B9732F762CB992D700A0A634 /* XCRemoteSwiftPackageReference "Swift-Either" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B981F5342CA7740E00155911 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B981F5322CA7740E00155911 /* Janitor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B981F5312CA7740E00155911 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B981F52F2CA7740E00155911 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B981F5402CA7741000155911 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B981F5412CA7741000155911 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		B981F5432CA7741000155911 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Janitor/Janitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Janitor/Preview Content\"";
+				DEVELOPMENT_TEAM = 26V9MK8TGP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Janitor/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "Imma clean it";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kynorthstar.Janitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B981F5442CA7741000155911 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Janitor/Janitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Janitor/Preview Content\"";
+				DEVELOPMENT_TEAM = 26V9MK8TGP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Janitor/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "Imma clean it";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.kynorthstar.Janitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B981F52E2CA7740E00155911 /* Build configuration list for PBXProject "Janitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B981F5402CA7741000155911 /* Debug */,
+				B981F5412CA7741000155911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B981F5422CA7741000155911 /* Build configuration list for PBXNativeTarget "Janitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B981F5432CA7741000155911 /* Debug */,
+				B981F5442CA7741000155911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B981F5A52CA7779600155911 /* XCLocalSwiftPackageReference "JanitorKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = JanitorKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B9732F762CB992D700A0A634 /* XCRemoteSwiftPackageReference "Swift-Either" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RougeWare/Swift-Either.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+		B981F5AB2CA7823A00155911 /* XCRemoteSwiftPackageReference "Swift-Introspection" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RougeWare/Swift-Introspection.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		B981F5AE2CA7828500155911 /* XCRemoteSwiftPackageReference "Swift-Rectangle-Tools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RougeWare/Swift-Rectangle-Tools";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.12.2;
+			};
+		};
+		B98B56872CB4601E00D2830F /* XCRemoteSwiftPackageReference "Swift-Optional-Tools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RougeWare/Swift-Optional-Tools.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B9732F772CB992D700A0A634 /* Either */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B9732F762CB992D700A0A634 /* XCRemoteSwiftPackageReference "Swift-Either" */;
+			productName = Either;
+		};
+		B981F5A62CA7779600155911 /* JanitorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JanitorKit;
+		};
+		B981F5AC2CA7823A00155911 /* Introspection */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B981F5AB2CA7823A00155911 /* XCRemoteSwiftPackageReference "Swift-Introspection" */;
+			productName = Introspection;
+		};
+		B981F5AF2CA7828500155911 /* RectangleTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B981F5AE2CA7828500155911 /* XCRemoteSwiftPackageReference "Swift-Rectangle-Tools" */;
+			productName = RectangleTools;
+		};
+		B98B56882CB4601E00D2830F /* OptionalTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B98B56872CB4601E00D2830F /* XCRemoteSwiftPackageReference "Swift-Optional-Tools" */;
+			productName = OptionalTools;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B981F52B2CA7740E00155911 /* Project object */;
+}

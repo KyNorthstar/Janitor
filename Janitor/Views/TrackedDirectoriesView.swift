@@ -32,9 +32,6 @@ struct TrackedDirectoriesView: View {
     private var trackedDirectories: [TrackedDirectory]
     
     @State
-    private var selectedDirectory: TrackedDirectory?
-    
-    @State
     private var _viewRefreshHack = ViewRefreshHack()
     
     @State
@@ -56,10 +53,7 @@ struct TrackedDirectoriesView: View {
                     ForEach($trackedDirectories) { dir in
                         TrackedDirectoryView(
                             dir,
-                            onDeleteRequested: {
-                                trackedDirectories.remove(firstElementWithId: dir.wrappedValue.id)
-                                _viewRefreshHack.refresh()
-                            },
+                            onDeleteRequested: onUserDeletedTrackedDirectory(dir),
                             _viewRefreshHack: $_viewRefreshHack,
                             onUserDoneEditing: onUserDoneEditingTrackedDirectory)
                     }
@@ -81,8 +75,9 @@ struct TrackedDirectoriesView: View {
                     .animation(.easeInOut(duration: 0.2), value: trackedDirectories)
                     
                     if avoidUsingToolbar {
-                        Button("Open") {
+                        Button("Open in full window") {
                             openWindow(id: "main")
+                            NSApp.arrangeInFront(nil)
                         }
                     }
                 }
@@ -101,6 +96,10 @@ struct TrackedDirectoriesView: View {
                     }
                     
                     if !avoidUsingToolbar {
+                        ToolbarItem(id: "Open settings", showsByDefault: true) {
+                            SettingsLink()
+                        }
+                        
                         ToolbarItem(id: "Track a new directory", placement: .primaryAction, showsByDefault: true) {
                             trackNewDirectoryButton
                         }
@@ -166,13 +165,11 @@ private extension TrackedDirectoriesView {
     
     
     var trackNewDirectoryButton: some View {
-        TrackNewDirectoryButton(trackedDirectories: $trackedDirectories, onDone: onUserDoneEditingTrackedDirectory)
+        TrackNewDirectoryButton(trackedDirectories: $trackedDirectories, onDone: onUserDoneAddingNewTrackedDirectory)
     }
     
     
-    func onUserDoneEditingTrackedDirectory(_ userDoneAction: UserDoneAction) -> ShouldAcceptUserDoneAction {
-        defer { _viewRefreshHack.refresh() }
-        
+    private func __basicAudit(of userDoneAction: UserDoneAction) -> ShouldAcceptUserDoneAction {
         switch userDoneAction {
         case .cancel:
             // If the user doesn't want to do anything, that's fine by us
@@ -192,6 +189,47 @@ private extension TrackedDirectoriesView {
             return .accept
         }
     }
+    
+    
+    func onUserDoneAddingNewTrackedDirectory(_ userDoneAction: UserDoneAction) -> ShouldAcceptUserDoneAction {
+        let auditResult = __basicAudit(of: userDoneAction)
+        
+        switch auditResult {
+        case .accept:
+            break
+            
+        case .reject(reasonPresentedToUser: _):
+            return auditResult
+        }
+        
+        switch userDoneAction {
+        case .confirm(proposedChanges: let trackedDirectory):
+            do {
+                try trackedDirectory.url.saveToBookmarks()
+            }
+            catch {
+                return .reject(reasonPresentedToUser: error.bestDescription)
+            }
+            
+        case .cancel:
+            break
+        }
+        
+        return .accept
+    }
+    
+    
+    func onUserDoneEditingTrackedDirectory(_ userDoneAction: UserDoneAction) -> ShouldAcceptUserDoneAction {
+        defer { _viewRefreshHack.refresh() }
+        
+        return __basicAudit(of: userDoneAction)
+    }
+    
+    
+    func onUserDeletedTrackedDirectory(_ dir: Binding<TrackedDirectory>) -> BlindCallback {{
+            trackedDirectories.remove(firstElementWithId: dir.wrappedValue.id)
+            _viewRefreshHack.refresh()
+    }}
     
     
     typealias UserDoneAction = TrackedDirectoryConfigurationView.UserDoneAction

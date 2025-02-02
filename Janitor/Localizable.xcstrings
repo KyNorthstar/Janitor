@@ -1,0 +1,166 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "\"%@\"" : {
+
+    },
+    "(whole %@" : {
+
+    },
+    "%@ isn't running" : {
+
+    },
+    "🐞 This text isn't supposed to appear! 👻 Ooooo it's an ooky spooky bug! 😲 Report it!" : {
+
+    },
+    "Add a folder to begin:" : {
+
+    },
+    "All of %@" : {
+
+    },
+    "Allow %@ to delete anything at all" : {
+
+    },
+    "Automatically clean this directory" : {
+
+    },
+    "Automatically Delete Anything On This %@" : {
+
+    },
+    "Big Main %@ Switch" : {
+
+    },
+    "BookmarkLoadError.couldNotReadBookmarkData(readError: %@)" : {
+      "comment" : "we could not find the bookmark data, or attempting to read it at all resulted in an error"
+    },
+    "BookmarkLoadError.failedToDecodeBase64BookmarkData" : {
+      "comment" : "when we found the bookmark data as a Base64-encoded string and tried to decode it, but the decoding failed"
+    },
+    "BookmarkLoadError.failedToResolveBookmarkData(resolutionError: %@)" : {
+      "comment" : "we found & decoded the bookmark data, but could not resolve it"
+    },
+    "Cancel" : {
+
+    },
+    "CAREFUL!" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Desktop" : {
+
+    },
+    "Edit" : {
+
+    },
+    "I have read the warning above." : {
+
+    },
+    "I ran into a problem while trying to remember what's going on:" : {
+
+    },
+    "I understand that selecting another folder would be safer." : {
+
+    },
+    "I understand that this check box must remain unchecked for me to proceed." : {
+
+    },
+    "I understand that this selection can delete extremely important files, and might cause damage to %@ which cannot be undone." : {
+
+    },
+    "Janitor tracks folders to make sure they don't get too bloated." : {
+
+    },
+    "Laptop" : {
+
+    },
+    "Largest Combined Size" : {
+
+    },
+    "Mac" : {
+
+    },
+    "Media Player" : {
+
+    },
+    "No Access" : {
+
+    },
+    "Oldest Allowed Age" : {
+
+    },
+    "Open in full window" : {
+
+    },
+    "Phone" : {
+
+    },
+    "Quit %@" : {
+
+    },
+    "SecurityScopeAccessError.couldNotAccessSecurityScopedResource" : {
+      "comment" : "Attempting to call startAccessingSecurityScopedResource() returned a `false`"
+    },
+    "Something's not right" : {
+
+    },
+    "Start Tracking" : {
+
+    },
+    "Tablet" : {
+
+    },
+    "this %@" : {
+
+    },
+    "TODO: System Consent" : {
+
+    },
+    "Track a folder" : {
+
+    },
+    "Track another" : {
+
+    },
+    "Try to continue anyway" : {
+
+    },
+    "Turn this janitor %@" : {
+
+    },
+    "TV Box" : {
+
+    },
+    "Type \"%@\" in this text field" : {
+
+    },
+    "Type this exactly" : {
+
+    },
+    "Update" : {
+
+    },
+    "Watch" : {
+
+    },
+    "You might need to make some changes" : {
+
+    },
+    "You've selected the entire Mac to be cleaned automatically by %@.\n**You must select a different folder** or heed the following warning:\n\nThis means that you are asking %@ to delete **any and all files on %@** which are older than %@, or **delete all old files** if you have used more than %@ of the drive space.\n\nIf you continue, **you might never be able to use %@ ever again.**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've selected the entire Mac to be cleaned automatically by %1$@.\n**You must select a different folder** or heed the following warning:\n\nThis means that you are asking %2$@ to delete **any and all files on %3$@** which are older than %4$@, or **delete all old files** if you have used more than %5$@ of the drive space.\n\nIf you continue, **you might never be able to use %6$@ ever again.**"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

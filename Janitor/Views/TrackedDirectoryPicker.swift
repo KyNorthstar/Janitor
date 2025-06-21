@@ -185,8 +185,80 @@ public enum ShouldAcceptUserDonePickingTrackedDirectoryAction {
 
 
 public extension View {
-    func trackedDirectoryPicker(isPresented: Binding<Bool>, onDone: OnUserDonePickingTrackedDirectory) -> some View {
-        modifier(TrackedDirectoryPicker(for: <#T##Binding<TrackedDirectory>#>, onDone: <#T##TrackedDirectoryPicker.OnDone##TrackedDirectoryPicker.OnDone##(UserDonePickingTrackedDirectoryAction) -> ShouldAcceptUserDonePickingTrackedDirectoryAction#>))
+    
+    @ViewBuilder
+    func trackedDirectoryPicker(directory: Binding<TrackedDirectory?>, onDone: @escaping OnUserDonePickingTrackedDirectory) -> some View {
+        if nil != directory.wrappedValue {
+            modifier(TrackedDirectoryPicker(onDone: { action in
+                switch action {
+                case .cancel:
+                    directory.wrappedValue = nil
+                    return onDone(action)
+                    
+                case .confirm(proposal: _):
+                    let response = onDone(action)
+                    
+                    switch response {
+                    case .accept:
+                        directory.wrappedValue = nil
+                        
+                    case .reject(reasonPresentedToUser: _):
+                        break
+                    }
+                    
+                    return response
+                }
+            }))
+        }
+        else {
+            self
+        }
+    }
+    
+    
+    @ViewBuilder
+    func trackedDirectoryPicker(isPresented: Binding<Bool>, onDone: @escaping OnUserDonePickingTrackedDirectory) -> some View {
+        if isPresented.wrappedValue {
+            modifier(TrackedDirectoryPicker_JustBool(onDone: { action in
+                switch action {
+                case .cancel:
+                    isPresented.wrappedValue = false
+                    return onDone(action)
+                    
+                case .confirm(proposal: _):
+                    let response = onDone(action)
+                    
+                    switch response {
+                    case .accept:
+                        isPresented.wrappedValue = false
+                        
+                    case .reject(reasonPresentedToUser: _):
+                        break
+                    }
+                    
+                    return response
+                }
+            }))
+        }
+        else {
+            self
+        }
+    }
+}
+
+
+
+private struct TrackedDirectoryPicker_JustBool: ViewModifier {
+    
+    @State
+    var tempTrackedDirectory: TrackedDirectory = .default()
+    
+    let onDone: OnUserDonePickingTrackedDirectory
+    
+    
+    func body(content: Content) -> some View {
+        content
+            .modifier(TrackedDirectoryPicker(for: $tempTrackedDirectory, onDone: onDone))
     }
 }
 

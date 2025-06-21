@@ -148,7 +148,7 @@ struct TrackedDirectoryView: View {
         .fixedSize()
         
         .trackedDirectoryPicker(isPresented: $showFolderPicker) { result in
-            <#code#>
+            fatalError("TODO")
         }
     }
     

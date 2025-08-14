@@ -23,6 +23,9 @@ struct TrackedDirectoryView: View {
     private var trackedDirectory: TrackedDirectory
     
     @State
+    private var size: TrackedDirectory.Size
+    
+    @State
     private var isEditing = false
     
     @State
@@ -67,26 +70,32 @@ struct TrackedDirectoryView: View {
             .onHover(perform: { isHovering = $0 })
         
             .contextMenu {
-                Button("Edit", action: { isEditing = true })
-                Button("Delete", action: onDeleteRequested)
+                Button("Edit", systemImage: "square.and.pencil", action: { isEditing = true })
+                Button("Delete", systemImage: "trash", role: .destructive, action: onDeleteRequested)
+            }
+        
+        
+            .onReceive(trackedDirectory.sizePublisher) { size in
+                self.size = size
             }
     }
     
     
     private var editButton: some View {
         Button(action: { isEditing = true }) {
-            Image(systemName: "pencil")
+            Image(systemName: "square.and.pencil")
+                .font(.system(size: 18))
                 .padding(EdgeInsets(eachVertical: 2, eachHorizontal: 4))
         }
-//        .buttonStyle(LinkButtonStyle())
-        .buttonStyle(.bordered)
+        .buttonStyle(.borderless)
+//        .buttonStyle(.bordered)
 //        .fixedSize()
         .foregroundStyle(Color.accentColor)
     }
     
     
     private var listingView: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .center) {
             switch Introspection.Permission.fileAccess(trackedDirectory.url) {
             case .noAccess,
                     .read,
@@ -99,7 +108,7 @@ struct TrackedDirectoryView: View {
             
             Group {
                 DecorativePathView(trackedDirectory.url)
-                    .foregroundColor(trackedDirectory.url.wouldBeDangerousToTrack ? .red : nil)
+                    .foregroundColor(trackedDirectory.url.wouldBeDangerousToAutoDelete ? .red : nil)
                 //                .transition(.opacity.animation(.bouncy))
                 
                 MeasurementView(trackedDirectory.largestAllowedTotalSize)
@@ -118,6 +127,8 @@ struct TrackedDirectoryView: View {
             editButton
                 .opacity(isHovering ? 1 : 0)
                 .animation(.bouncy, value: isHovering)
+            
+            statsView
             
             Toggle("Automatically clean this directory", isOn: $trackedDirectory.isEnabled)
                 .toggleStyle(SwitchToggleStyle(tint: .toggle))
@@ -150,6 +161,15 @@ struct TrackedDirectoryView: View {
         .trackedDirectoryPicker(isPresented: $showFolderPicker) { result in
             fatalError("TODO")
         }
+    }
+    
+    
+    private var statsView: some View {
+        HStack(alignment: .center) {
+            Text("\(trackedDirectory.) files")
+            Text("\(trackedDirectory.totalSizeFormatted)")
+        }
+        .foregroundColor(.secondary)
     }
     
     

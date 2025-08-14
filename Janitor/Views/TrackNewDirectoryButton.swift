@@ -45,8 +45,7 @@ struct TrackNewDirectoryButton: View {
     
     var body: some View {
         Button(action: { isSelectingNewDirectoryToTrack = true }) {
-            Image(systemName: "plus")
-            Text(title.rawValue)
+            Label(title.rawValue, systemImage: "plus")
                 .font(emphasize ? .title3.bold() : nil)
         }
         .controlSize(.large)

@@ -79,7 +79,7 @@ private struct TrackedDirectoryPicker: ViewModifier {
                 
                 workingTrackedDirectory.url = directoryUrl
                 
-                if directoryUrl.wouldBeDangerousToTrack {
+                if directoryUrl.wouldBeDangerousToAutoDelete {
                     workingTrackedDirectory.isEnabled = false
                 }
                 
@@ -189,7 +189,19 @@ public extension View {
     @ViewBuilder
     func trackedDirectoryPicker(directory: Binding<TrackedDirectory?>, onDone: @escaping OnUserDonePickingTrackedDirectory) -> some View {
         if nil != directory.wrappedValue {
-            modifier(TrackedDirectoryPicker(onDone: { action in
+            modifier(TrackedDirectoryPicker(
+                for: .init(get: {
+                    guard let dir = directory.wrappedValue else {
+                        assertionFailure("Attempted to access tracked directory before it was set")
+                        return TrackedDirectory.default()
+                    }
+                    
+                    return dir
+                }, set: { newValue in
+                    directory.wrappedValue = newValue
+                }),
+                
+                onDone: { action in
                 switch action {
                 case .cancel:
                     directory.wrappedValue = nil

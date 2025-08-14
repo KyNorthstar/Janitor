@@ -79,7 +79,7 @@ struct App: SwiftUI.App {
         #endif
         log(debug: "\(Self.self) initialized")
         
-        Task(priority: .high) { [self] in
+        Task(priority: .high) { @MainActor [self] in
             log(verbose: "Task spawned to start janitorial engine")
             await janitorialEngine.start()
         }
@@ -104,9 +104,26 @@ struct App: SwiftUI.App {
                             Spacer().hidden()
                         }
                     }
-                    
+                    .onAppear {
+                        NSApp.setActivationPolicy(.regular)
+                        log(verbose: "Activation policy set to `.regular`")
+                        Task {
+                            try? await Task.sleep(for: .seconds(1))
+                            let icon = NSImage(named: "Icon (2024)")
+                            
+                            NSApp.applicationIconImage = icon
+//                            NSApplication.shared.dockTile.icon = icon
+                            NSApp.dockTile.display()
+                        }
+                    }
+                    .onDisappear {
+                        NSApp.setActivationPolicy(.accessory)
+                        log(verbose: "Activation policy set to `.accessory`")
+                    }
             }
             .windowToolbarStyle(.unified)
+            
+            
             
             Settings {
                 SettingsView()
@@ -114,6 +131,7 @@ struct App: SwiftUI.App {
                     .environmentObject(janitorialEngine)
                     .environment(\.janitorialEngineActivityFeed, janitorialEngine.activityFeed)
             }
+            
             
             MenuBarExtra(Introspection.appName, image: "MenuBarIcon", isInserted: $isMenuBarIconInsertedIntoMenuBar) {
                 DataModelTranslationLayer()

@@ -243,7 +243,7 @@ private extension TrackedDirectoryConfigurationView {
     
     
     var confirmButtonAllowUserInteraction: Bool {
-        if workingTrackedDirectory.url.wouldBeDangerousToTrack {
+        if workingTrackedDirectory.url.wouldBeDangerousToAutoDelete {
             userDefinitelyDidConsent
         }
         else {

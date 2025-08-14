@@ -1,5 +1,5 @@
 {
-  "originHash" : "e51c56749f24dde47fb2e25969d33a711b8786a4dbbab3a95673de9fc0d2aedf",
+  "originHash" : "190a9192a5839a9ccde5afd3adc0190782484814ddf0b3286cf58bed07e8c01c",
   "pins" : [
     {
       "identity" : "swift-basic-math-tools",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RougeWare/Swift-Introspection.git",
       "state" : {
-        "revision" : "dcdae93300ef178c0fc3f5c3c78bbec1541bac12",
-        "version" : "1.2.0"
+        "revision" : "0fb8cae64c244137aa8d36ff554f3166bd785be2",
+        "version" : "1.2.1"
       }
     },
     {

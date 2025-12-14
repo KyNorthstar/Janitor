@@ -75,9 +75,17 @@ struct TrackedDirectoriesView: View {
                     .animation(.easeInOut(duration: 0.2), value: trackedDirectories)
                     
                     if avoidUsingToolbar {
-                        Button("Open in full window") {
-                            openWindow(id: "main")
-                            NSApp.arrangeInFront(nil)
+                        HStack {
+                            Button("Open in full window") {
+                                openWindow(id: "main")
+                                NSApp.arrangeInFront(nil)
+                            }
+                            
+                            Spacer()
+                            
+                            Button("Quit") {
+                                NSApp.terminate(nil)
+                            }
                         }
                     }
                 }

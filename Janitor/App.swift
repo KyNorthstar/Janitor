@@ -103,6 +103,7 @@ struct App: SwiftUI.App {
                         ToolbarItem(id: "empty") {
                             Spacer().hidden()
                         }
+                        .hidden()
                     }
                     .onAppear {
                         NSApp.setActivationPolicy(.regular)

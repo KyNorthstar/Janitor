@@ -23,7 +23,7 @@ struct TrackedDirectoryView: View {
     private var trackedDirectory: TrackedDirectory
     
     @State
-    private var size: TrackedDirectory.Size
+    private var size: TrackedDirectory.Stats?
     
     @State
     private var isEditing = false
@@ -75,8 +75,11 @@ struct TrackedDirectoryView: View {
             }
         
         
-            .onReceive(trackedDirectory.sizePublisher) { size in
+            .onReceive(trackedDirectory.totalSizeChangePublisher()) { size in
                 self.size = size
+            }
+            .onAppear {
+                self.size = trackedDirectory.currentTotalSize
             }
     }
     
@@ -128,7 +131,7 @@ struct TrackedDirectoryView: View {
                 .opacity(isHovering ? 1 : 0)
                 .animation(.bouncy, value: isHovering)
             
-            statsView
+            TrackedDirectoryStatisticsLine(stats: trackedDirectoryStats)
             
             Toggle("Automatically clean this directory", isOn: $trackedDirectory.isEnabled)
                 .toggleStyle(SwitchToggleStyle(tint: .toggle))
@@ -161,15 +164,6 @@ struct TrackedDirectoryView: View {
         .trackedDirectoryPicker(isPresented: $showFolderPicker) { result in
             fatalError("TODO")
         }
-    }
-    
-    
-    private var statsView: some View {
-        HStack(alignment: .center) {
-            Text("\(trackedDirectory.) files")
-            Text("\(trackedDirectory.totalSizeFormatted)")
-        }
-        .foregroundColor(.secondary)
     }
     
     

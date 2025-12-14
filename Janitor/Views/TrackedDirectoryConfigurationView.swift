@@ -71,7 +71,6 @@ struct TrackedDirectoryConfigurationView: View {
         .frame(idealWidth: 480, maxWidth: 640)
         .fixedSize()
         
-//        .trackedDirectoryPicker(isPresented: <#T##Binding<Bool>#>, onDone: <#T##(UserDonePickingTrackedDirectoryAction) -> ShouldAcceptUserDonePickingTrackedDirectoryAction#>)
     }
     
     
